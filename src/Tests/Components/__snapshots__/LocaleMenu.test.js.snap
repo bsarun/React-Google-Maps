@@ -1,0 +1,69 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Todo component renders the todo correctly Renders correctly 1`] = `
+<div
+  className="locale-menu en"
+>
+  <button
+    className="btn btn-toggle hidden-sm hidden-md hidden-lg"
+    onClick={[Function]}
+  >
+    <span
+      className="sr-only"
+    >
+      <span>
+        Open language menu
+      </span>
+    </span>
+  </button>
+  <form
+    className="locale-options"
+    onSubmit={[Function]}
+  >
+    <div
+      className="form-group segmented-control"
+    >
+      
+      
+      <div
+        className="controls"
+      >
+        <span>
+          <button
+            className="segmented-option btn selected btn-primary"
+            data-value="en"
+            disabled={false}
+            id="locale-options-0"
+            onBlur={[Function]}
+            onClick={[Function]}
+          >
+            <span
+              className="wrapper-text"
+            >
+              English
+            </span>
+          </button>
+        </span>
+        <span>
+          <button
+            className="segmented-option btn btn-default"
+            data-value="es"
+            disabled={false}
+            id="locale-options-1"
+            onBlur={[Function]}
+            onClick={[Function]}
+          >
+            <span
+              className="wrapper-text"
+            >
+              Espa�ol
+            </span>
+          </button>
+        </span>
+      </div>
+      
+      
+    </div>
+  </form>
+</div>
+`;

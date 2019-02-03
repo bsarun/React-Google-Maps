@@ -1,0 +1,4 @@
+{
+	"geoCodeEndPoint":"https://geocode.xyz/{locationName}/?json=1&auth=",
+	"authToken":"152586089022980644792x1740"
+}

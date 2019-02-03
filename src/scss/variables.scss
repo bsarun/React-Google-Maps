@@ -1,0 +1,48 @@
+//////////
+// COLORS
+//////////
+
+// Base colors
+$white: #ffffff;
+$off-white: #fafbfd;
+$gray-base: #000000;
+$gray-dark: #334048;
+$gray: #696969;
+$gray-light: #b4b4b4;
+$gray-lighter: #d0d2d3;
+$gray-lighterer: #8F8B90;
+$gray-lightest: #e7e8e9;
+$gray-most-light: #F4F5F7;
+$gray-medium: #c2c2c2;
+$brand-primary: #2D76A3;
+$brand-success: #1e824c;
+$brand-danger: #e42539;
+$state-danger-text: $brand-danger;
+
+// Project specific color names.
+$black: $gray-base;
+// $gray: $gray-dark;
+$gray-2: $gray;
+$light-gray: $gray-light;
+$lightest-gray: $gray-lighter;
+$light-blue: #30BFD1;
+$blue: $brand-primary;
+$blue-2: #256b9a;
+$blue-3: #22618c;
+$blue-4: #256388;
+$dark-blue: #334048;
+$dark-blue-2: #15608c;
+$dark-blue-3: #315469;
+$green: $brand-success;
+$green-2: #1a7142;
+$green-3: #1e824c;
+$green-4: #155d36;
+$red: $brand-danger;
+$red-2: #dd394a;
+$dark-red: #aa2c39;
+$yellow: #f1bd19;
+
+// Bootstrap overrides.
+$btn-header-border: #ffffff;
+$border-radius-base: 3px;
+

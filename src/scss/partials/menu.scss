@@ -1,0 +1,168 @@
+.menu-page {
+	// padding-top: 1.3em;
+	padding-bottom: 4em;
+
+	.intro {
+		
+	}
+
+	h1 {
+		font-size: 1.625em;
+		margin-top: 0;
+		margin-bottom: 0.7em;
+	}
+
+	.menu-items {
+		background: $white;
+		border: 1px solid $gray-lighter;
+		border-radius: 3px;
+		margin-bottom: 2em;
+
+		.menu-item {
+			padding: 1.2em 1.25em;
+			border-bottom: 1px solid $gray-lighter;
+			
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.title {
+				font-size: 1.125em;
+				font-weight: 700;
+				margin-bottom: .8em;
+			}
+
+			p.text-danger {
+				font-size: 0.8125em;
+				font-style: italic;
+				margin: .4em 0 1em 0;
+				.ic_error {
+					display: block;
+					float: left;
+					margin-right: .5em;
+					margin-top: .15em;
+				}
+			}
+
+			&.review {
+				padding-top: 2em;
+				padding-bottom: 1.9em;
+				.title {
+					padding-left: calc(24px + 1.25em);
+					&:before {
+						content: '';
+						display: block;
+						float: left;
+						@extend .ic_completed_check;
+						position: absolute;
+						top: 50%;
+						left: 15px;
+						transform: translateY(-50%)
+					}
+				}
+			}
+			&.review, &.edit {
+				.btn-link {
+					font-size: 0.85714286em;
+					line-height: 1.875em;
+					padding: 0;
+				}
+				.title {
+					margin-bottom: 0;
+				}
+			}
+
+			&.edit {
+				.btn-link {
+					text-align: right;
+				}
+			}
+
+			&.disabled {
+				.title {
+					margin-bottom: 0;
+				}
+			}
+		}
+	}
+
+	.household-members {
+		margin: 1.6em 0 0;
+		.household-member {
+			font-size: 0.8125em;
+			margin-right: 2.4em;
+			margin-bottom: 1.4em;
+			display: block;
+			.avatar {
+				float: left;
+				// border: 1px solid $gray-base;
+				margin-right: 1em;
+			}
+			.name {
+				line-height: 36px;
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-sm) {
+	.menu-page {
+		padding-top: 0;
+		.container-content {
+			padding: 0 2.25em;
+		}
+		.intro {
+			display: block;
+			padding-top: 3em;
+		}
+		h1 {
+			font-size: 1.625em;
+			margin-bottom: 1.3em;
+		}
+		.menu-items {
+			.menu-item {
+				padding: 3.3em 2em;
+
+				> .row {
+					display: table;
+					width: calc(100% + 30px);
+					table-layout: fixed;
+					> div {
+						display: table-cell;
+						vertical-align: middle;
+						float: none;
+					}
+				}
+
+				.title {
+					margin-bottom: 0;
+				}
+
+				p.text-danger {
+					margin: .4em 0;
+				}
+
+				&.review {
+					padding: 3.3em 2em;
+				}
+				&.review, &.edit {
+					.btn-link {
+						padding: 0.69em 1.53846154em;
+					}
+				}
+			}
+		}
+		.menu-actions-row {
+			padding: 0 2em;
+		}
+
+		.household-members {
+			margin: 1.6em 0 0;
+			.household-member {
+				font-size: 0.75em;
+				margin-right: 2.4em;
+				display: inline-block;
+			}
+		}
+	}
+}

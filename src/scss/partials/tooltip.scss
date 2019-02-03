@@ -1,0 +1,117 @@
+.tooltip-container {
+	position: relative;
+	font-size: 1rem;
+	.tooltip {
+		position: absolute;
+		z-index: 2;
+		width: 222px;
+		max-width: 500px;
+		left: -18px;
+		transform: translate(-50%);
+		bottom: calc(100% + 10px);
+		// transform: translateX(-50%);
+		background: $dark-blue;
+		color: $white;
+		padding: .5em .7em;
+		font-weight: normal;
+		font-size: .8em;
+		line-height: 1.4em;
+		border: none;
+
+		 &:after {
+		 	top: 100%;
+		 	left: calc(100% + -83px);
+		 	border: solid transparent;
+		 	content: " ";
+		 	height: 0;
+		 	width: 0;
+		 	position: absolute;
+		 	pointer-events: none;
+		 	border-color: rgba(51, 64, 72, 0);
+		 	border-top-color: #334048;
+		 	border-width: 6px;
+		 	margin-left: -6px;
+		 }
+
+		&:focus {
+			outline: none;
+		}
+
+		a {
+			color: $white;
+			text-decoration: underline;
+			&:hover {
+				color: $white;
+			}
+		}
+	}
+
+
+	&.wide {
+		.tooltip {
+			width: 80vw;
+		}
+	}
+
+	.tooltipbottom {
+		position: absolute;
+		top:29px;
+		z-index: 2;
+		width: 300px;
+		max-width: 500px;
+		left: 25px;
+		transform: translate(-80%);
+		// transform: translateX(-50%);
+		background: $dark-blue;
+		color: $white;
+		padding: .5em .7em;
+		font-weight: normal;
+		font-size: .8em;
+		line-height: 1.4em;
+		border: none;
+		
+		 &:after {
+		 	bottom: 100%;
+			left: calc(100% + -83px);
+		 	border: solid transparent;
+		 	content: " ";
+		 	height: 0;
+		 	width: 0;
+		 	position: absolute;
+		 	pointer-events: none;
+			border-color: rgba(51, 64, 72, 0);
+		 	border-top-color: #334048;
+		 	border-width: 6px;
+			transform: rotate(180deg);
+		 }
+
+		&:focus {
+			
+			outline: none;
+		}
+		
+	}
+	&.wide {
+		.tooltip {
+			width: 80vw;
+		}
+	}
+
+}
+
+.tooltip-info-icon {
+	@include image-icon('../assets/ic_tooltip.png', '../assets/ic_tooltip@2x.png', 15px, 15px);
+	&:hover {
+		@include image-icon('../assets/ic_tooltip_hover.png', '../assets/ic_tooltip_hover@2x.png', 15px, 15px);
+	}
+}
+
+@media (min-width: $screen-sm) {
+	.tooltip-container {
+		&.wide {
+			.tooltip {
+				width: 600px;
+			}
+		}
+	}
+}

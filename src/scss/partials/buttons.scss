@@ -1,0 +1,197 @@
+.btn {
+	font-size: 1.07142857em;
+	padding: 0.9em 1.53846154em;
+	/*font-weight: 600;*/
+	&:active {
+		@include box-shadow(none);
+	}
+}
+
+
+// make a button have rounded corners
+.btn-pill {
+	border-radius: 40px;
+	background: $white;
+	border-color: $gray-lighter;
+	color: $blue;
+	padding: 0.35714286em 0.85714286em;
+	&:hover {
+		background-color: $blue;
+		color: $white;
+		border-color: $blue;
+	}
+	&[disabled]:hover {
+		background-color: $white;
+		color: $blue;
+		border-color: $gray-lighter;
+	}
+}
+
+.btn-default {
+	background-color: transparent;
+	border-color: $brand-primary;
+	color: $brand-primary;
+	&:hover {
+		background-color: transparent;
+		border-color: $blue-2;
+		color: $blue-2;
+	}
+	&[disabled], &[disabled]:hover, &.disabled {
+		color: $gray;
+		border-color: $gray;
+		background-color: transparent;
+	}
+}
+
+.btn-primary {
+	background: $blue;
+	color: $white;
+	border-color: $blue;
+	&:hover {
+		background-color: $blue-2;
+		border-color: $blue-2;
+	}
+	&:focus {
+		background: $blue;
+		color: $white;
+		border-color: $blue;
+	}
+	&[disabled], &[disabled]:hover, &[disabled]:focus, &.disabled {
+		background: $gray-lightest;
+		border-color: $gray-lightest;
+		color: $white;
+		opacity: 1;
+	}
+}
+
+.btn-success {
+	background: $green;
+	color: $white;
+	border-color: $green;
+	&:hover {
+		background-color: $green-2;
+		border-color: $green-2;
+	}
+	&:focus {
+		background: $green;
+		color: $white;
+		border-color: $green;
+	}
+	&[disabled], &[disabled]:hover {
+		background: $gray-lighter;
+		border-color: $gray-lighter;
+	}
+}
+
+.btn-danger {
+	background: $white;
+	color: $red;
+	border-color: $red;
+	&:hover {
+		background-color: $red;
+		color: $white;
+		border-color: $red;
+	}
+	&[disabled]:hover {
+		background: $white;
+		color: $red;
+		border-color: $red;
+	}
+}
+
+.btn-info {
+	background: $white;
+	color: $blue;
+	border-color: $blue;
+	&:hover {
+		background-color: $blue;
+		color: $white;
+		border-color: $blue;
+	}
+}
+
+.btn-warning {
+	background: $white;
+	color: $yellow;
+	border-color: $yellow;
+	&:hover {
+		background-color: $yellow;
+		color: $white;
+		border-color: $yellow;
+	}
+}
+
+.btn-add, .btn-edit {
+	font-size: 0.8125em;
+	font-weight: 600;
+	border-color: $brand-primary;
+	&:hover {
+		background-color: $brand-primary;
+		border-color: $brand-primary;
+		color: $white;
+	}
+	&[disabled], &.disabled, &[disabled]:hover, &.disabled:hover {
+		background-color: $gray-lightest;
+		border-color: $gray-lightest;
+		color: $white;
+	}
+}
+
+.btn-add {
+	padding-left: 24px !important;
+	background: transparent none no-repeat scroll 10px center;
+	@include image-2x('../assets/ic_plus.png', '../assets/ic_plus@2x.png', 9px, 9px);
+	&:hover, &[disabled], &.disabled {
+		@include image-2x('../assets/ic_plus_white.png', '../assets/ic_plus_white@2x.png', 9px, 9px);
+	}
+}
+
+.btn-edit {
+	padding-left: 28px !important;
+	background: transparent none no-repeat scroll 10px center;
+	@include image-2x('../assets/ic_edit.png', '../assets/ic_edit@2x.png', 14px, 14px);
+	&:hover, &[disabled], &.disabled {
+		@include image-2x('../assets/ic_edit_white.png', '../assets/ic_edit_white@2x.png', 14px, 14px);
+	}
+}
+
+.btn-link {
+	white-space: normal;
+	&:hover {
+		color: $blue-4;
+		text-decoration: none;
+	}
+}
+.btn-borderless {
+	white-space: normal;
+	border: none;
+	&:hover, &:active {
+		border: none;
+		background: transparent;
+	}
+}
+
+
+.btn-external {
+	padding-left: 28px;
+	background: transparent none no-repeat scroll 4px 6px;
+	text-decoration: underline;
+	text-align: left;
+	@include image-2x('../assets/ic_default_link.png', '../assets/ic_default_link@2x.png', 16px, 16px);
+	&:hover {
+		@include image-2x('../assets/ic_hover_link.png', '../assets/ic_hover_link@2x.png', 16px, 16px);
+	}
+}
+
+
+@media (min-width: $screen-sm) {
+	.btn {
+		font-size: 0.8125em;
+		font-weight: normal;
+		padding: 0.69em 1.53846154em;
+	}
+
+	.btn-pill {
+		padding: 0.3125em 0.75em;
+	}
+}

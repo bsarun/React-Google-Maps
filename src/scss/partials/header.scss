@@ -1,0 +1,247 @@
+.main-header {
+	background-color: $brand-primary;
+	padding: 0;
+	position: relative;
+	z-index: 2;
+	.logo {
+		// display: none;
+		text-indent: -9999px;
+		overflow: hidden;
+		padding: 0;
+		margin: .3em 0 0 0;
+		width: 94px;
+		height: 31px;
+		@include img-retina("../assets/logo_cc_mobile.png", "../assets/logo_cc_mobile@2x.png", 94px, 31px);
+	}
+	.btn.btn-header, .btn-hamburger, .btn-toggle {
+		padding-left: 15px;
+		padding-right: 15px;
+		background: $blue;
+		color: $white;
+		border-color: $white;
+		// line-height: 2.1rem;	// match hamburger height
+		&:hover {
+			background-color: $white;
+			color: $blue;
+		}
+	}
+
+	.btn-help {
+		color: $white;
+	}
+
+	.btn-hamburger {
+		overflow: hidden;
+		border-left: none;
+		padding-top: 1.1rem;
+	    padding-bottom: 1.1rem;
+		&:after {
+			content: '';
+			@include image-icon('../assets/ic_burger.png', '../assets/ic_burger@2x.png', 20px, 16px);
+			display: block;
+		}
+		&:hover {
+			background: $blue;
+			color: $white;
+		}
+	}
+
+
+
+	.locale-menu {
+		display: inline;
+		.locale-options {
+			display: none;
+		}
+	}
+
+	.segmented-control {
+		display: inline;
+		.btn {
+			position: relative;
+			background: transparent;
+			border-color: transparent;
+			color: $white;
+			margin-bottom: 0;
+			&.selected {
+				text-decoration: underline;
+			}
+			&:hover {
+				background: transparent;
+				color: $white;
+				text-decoration: underline;
+			}
+		}
+		span:first-child {
+			.btn {
+				margin-right: 0;
+				// &:after {
+				// 	display: block;
+				// 	position: absolute;
+				// 	right: 0;
+				// 	top: 5px;
+				// 	bottom: 5px;
+				// 	content: '';
+				// 	width: 1px;
+				// 	background-color: #246b9a;
+				// }
+			}
+		}
+	}
+
+	form {
+		display: inline;
+	}
+}
+
+@media (max-width: $screen-sm - 1) {
+	.header-hidden-xs {
+		.main-header {
+			display: none;
+		}
+	}
+	.main-header {
+		border-bottom: 1px solid rgba(0,0,0,.2);
+		// Buttons need to go all the way to the edge of the screen.
+		> .container {
+			// padding-left: 0;
+			// padding-right: 0;
+			// overflow: hidden;
+		}
+		.btn.btn-header, .btn-hamburger, .btn-toggle, .FAB .fab-help-control {
+			// display: block;
+			font-size: 14px;
+			font-weight: 400;
+			padding: .6em .8em;
+			height: 47px;
+			margin: 0;
+			border-radius: 0;
+			border: none;
+			border-left: 1px solid rgba(0,0,0,.2);
+		}
+
+		.btn-hamburger {
+			border-left: none;
+		}
+
+		.hamburger-column {
+			padding-left: 0;
+		}
+
+		.btn-column {
+			padding-right: 0;
+		}
+
+		.btn.btn-help {
+			// padding: .775em 1.4em;
+			&:after {
+				content: ' ';
+				display: block;
+				@include image-icon('../assets/ic_m_help.png', '../assets/ic_m_help@2x.png', 24px, 24px);
+			}
+			&:hover {
+				background: transparent;
+			}
+		}
+
+		.locale-menu {
+			position: relative;
+			// z-index: 3;
+			display: inline-block;
+			.locale-options {
+				display: none;
+			}
+			.btn-toggle {
+				// padding: .775em 1.4em;
+				&:after {
+					content: ' ';
+					display: block;
+					@include image-icon('../assets/ic_m_globe.png', '../assets/ic_m_globe@2x.png', 24px, 24px);
+				}
+				&:hover {
+					background: transparent;
+				}
+			}
+			&.open {
+				.btn-toggle {
+					background: $blue-2;
+				}
+				.locale-options {
+					display: block;
+					padding: 0 .5em;
+					position: absolute;
+					z-index: 2;
+					top: 100%;
+					left: auto;
+					right: 0;
+					width: 135px;
+					background: $blue-2;
+					.btn {
+						display: block;
+						width: 100%;
+						color: $white;
+						text-align: left;
+						font-weight: 400;
+						padding: .65em .25em;
+						&:first-child {
+							margin-right: 0;
+							border-bottom: 1px solid $blue-3;
+						}
+					}
+				}	
+			}
+		}
+
+		&.has-save-and-exit {
+			.locale-menu {
+				&.open {
+					.locale-options {						
+					}
+				}
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-sm) {
+	.main-header {
+		padding: 1rem 0;
+		.logo {
+			// display: block;
+			width: 146px;
+			height: 54px;
+			margin: 0;
+			@include img-retina("../assets/logo_cc.png", "../assets/logo_cc@2x.png", 146px, 54px);
+			// margin-left: .7em;
+		}
+		.locale-menu {
+			display: inline-block;
+			.locale-options {
+				display: inline;
+			}
+			&.en {
+				.segmented-option[data-value="en"] {
+					display: none;
+				}
+			}
+			&.es {
+				.segmented-option[data-value="es"] {
+					display: none;
+				}
+			}
+		}
+
+		.btn-column {
+			margin-top: .4em;
+		}
+		
+	}
+}
+
+@media (min-width: $screen-md) {
+	.main-header {
+		.logo {
+			// margin-left: .85em;
+		}
+	}
+}

@@ -1,0 +1,2 @@
+# Containers
+Containers are responsible for managing an apps state, registering listeners with the stores, and updating state when stores change. Containers will generally represent a single page in an app.

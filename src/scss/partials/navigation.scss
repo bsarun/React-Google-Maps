@@ -1,0 +1,203 @@
+nav.panel-group {
+		display: none;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+		background: $white;
+		// padding-bottom: 70px;		NOTE: What was this for?
+		/* weird that this is needed */
+		margin-top: -20px;
+
+		.panel {
+			border: 0;
+			border-radius: 0;
+			box-shadow: none;
+			margin: 20px 15px 0 15px;
+			border-bottom: 1px solid $gray-lightest;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.panel-heading {
+				background: $white;
+				font-weight: 600;
+				padding-top: 20px;
+				border: none;
+			}
+
+			h4.panel-title {
+				padding-bottom: 10px;
+
+				a {
+					color: $gray-dark;
+					font-size: .85em;
+				}
+			}
+			.panel-collapse {
+				.list-group {
+					border: none;
+				}
+			}
+		}
+		.panel.panel-active {
+			position: relative;
+			border-radius: 0;
+			// border-left: 4px solid $brand-success;
+			// border-bottom: none;
+			box-sizing: border-box;
+			// margin-left: -1px;
+			margin-top: 0;
+			// padding-left: 15px;
+			&:after {
+				display: block;
+				position: absolute;
+				left: -15px;
+				top: 0;
+				bottom: 0;
+				content: '';
+				width: 4px;
+				background: $brand-success;
+			}
+			.panel-heading {
+				padding-top: 25px;
+			}
+			.panel-title {
+				border-bottom: none;
+			}
+			.icon {
+				 display: inline-block;
+				margin: 0 3px;
+			}
+			.panel-collapse {
+				border: none;
+				padding-bottom: 15px;
+				ul.list-group {
+					position: relative;
+					border: none;
+					list-style: none;
+					// &:before {
+					// 	display: block;
+					// 	position: absolute;
+					// 	z-index: 1;
+					// 	left: 46px;
+					// 	top: 8px;
+					// 	bottom: 8px;
+					// 	content: '';
+					// 	width: 1px;
+					// 	background: $gray-lightest;
+					// }
+					li {
+						position: relative;
+						z-index: 2;
+						font-size: 0.8125em;
+						span {
+							padding-left: 5px;
+						}
+						a {
+							color: $gray-dark;
+						}
+					}
+					.active {
+						 color: $brand-success;
+					}
+				}
+			}
+		}
+}
+
+@media (max-width: $screen-sm - 1) {
+	.navigation {
+		background: $white;
+		position: fixed;
+		z-index: 5;
+		width: 253px;
+		top: 0;
+		bottom: 0;
+		overflow: auto;
+		left: -253px;
+		transition: left .2s ease-out;
+
+		nav.panel-group {
+			display: block;
+			margin: 0;
+			box-shadow: none;
+		}
+
+		.navigation-header {
+			background: $blue;
+			padding: 1em;
+			&:after {
+				content: '';
+				display: block;
+				width: 114px;
+				height: 42px;
+				@include img-retina("../assets/logo_covered_california.png", "../assets/logo_covered_california@2x.png", 114px, 42px);
+				margin: 0 auto;
+			}
+		}
+	}
+
+	.mobile-nav-overlay {
+		display: none;
+		position: fixed;
+		left: 0;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		z-index: 4;
+		background: rgba(0,0,0,.5);
+	}
+
+		
+	.mobile-nav-open {
+		overflow: hidden;
+		.navigation {
+			left: 0;
+		}
+		.mobile-nav-overlay {
+			display: block;
+		}
+	}
+}
+
+@media (min-width: $screen-sm) {
+	nav.panel-group {
+		display: block;
+
+		.nav-icon:first-child {
+			display: none;
+		}
+
+		.panel {
+			.panel-heading {
+				padding-left: .5em;
+				padding-right: 0;
+			}
+			&.panel-active .panel-collapse ul.list-group {
+				padding-left: .3em;
+			}
+		}
+	}
+}
+
+@media (min-width: $screen-md) {
+	nav.panel-group {
+		
+		.nav-icon:first-child {
+			display: inline-block;
+		}
+
+		.panel {
+			.panel-heading {
+				padding: 20px ($grid-gutter-width / 2) 10px;
+			}
+			&.panel-active .panel-collapse ul.list-group {
+				padding-left: 2.5em;
+			}
+			h4.panel-title {
+				a {
+					font-size: .9375em;
+				}
+			}
+		}
+	}
+}
