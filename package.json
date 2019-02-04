@@ -1,19 +1,11 @@
 {
-  "name": "react-shopandcompare",
-  "version": "1.0.0",
-  "description": "CalHEERS Shop And Compare",
+  "name": "medwing-googlemaps",
+  "description": "Medwing Google Maps",
   "main": "src/index.jsx",
   "scripts": {
     "install-and-build": "npm install && npm run build",
     "install-and-build-with-devtools": "npm install && npm run build-with-devtools",
     "start": "webpack-dev-server --inline --content-base ./build",
-    "start-vpn": "webpack-dev-server --inline --content-base ./build --config ./webpack.vpn.config.js",
-    "start-vpn-with-devtools": "webpack-dev-server --inline --content-base ./build --define process.env.devtoolsFooter='\"true\"' --config ./webpack.vpn.config.js",
-    "build": "webpack --progress -p --colors --config ./webpack.production.config.js",
-    "build-with-devtools": "webpack --progress -p --colors --define process.env.devtoolsFooter='\"true\"' --config ./webpack.production.config.js",
-    "build-qa": "webpack --progress -p --colors --config ./webpack.qa.config.js",
-    "build-vpn": "webpack --progress -p --colors --config ./webpack.vpn.config.js",
-    "build-vpn-with-devtools": "webpack --progress -p --colors --define process.env.devtoolsFooter='\"true\"' --config ./webpack.vpn.config.js",
     "test": "jest --verbose",
     "test-with-coverage": "jest --coverage || true"
   },
@@ -23,9 +15,8 @@
   },
   "author": "",
   "contributors": [
-    ""
+    "Arun BS"
   ],
-  "license": "<tbd>",
   "devDependencies": {
     "accounting": "^0.4.1",
     "babel-core": "^6.14.0",
@@ -83,6 +74,9 @@
     "is-ios": "^1.0.0",
     "jest-enzyme": "4.0.1",
     "jest-matchers": "20.0.3",
+    "react-geocode": "^0.1.2",
+    "react-google-map": "^3.1.1",
+    "react-google-maps": "^9.4.5",
     "superagent": "^2.3.0",
     "webpack-hashed-module-id-plugin": "^0.1.4"
   }

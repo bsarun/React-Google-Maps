@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, MarkerWithLabel } from 'react-google-maps';
-import AddMapModal from './Modal/AddMapModal.jsx';
 import Modal from 'react-modal';
 import { Form } from 'formsy-react';
 import GoogleMapActions from '../Actions/GoogleMapActions.js';
