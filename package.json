@@ -9,6 +9,10 @@
     "test": "jest --verbose",
     "test-with-coverage": "jest --coverage || true"
   },
+  "jest": {
+    "verbose": true,
+    "testURL": "http://localhost/"
+    },
   "repository": {
     "type": "GitHug",
     "url": "<tbd>"

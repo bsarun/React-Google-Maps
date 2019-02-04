@@ -63,16 +63,31 @@ preLoaders: [{
   loader: 'jscs-loader'
 }],
 loaders: [
-  {
-    test: /\.jsx?$/,
-    include: path.join(__dirname, 'src'),
-    loader: 'babel',
-    query: { presets: ['es2015', 'react'] }
-  },
-  {
-    test: /\.json$/,
-    loader: 'json'
-  },
+    {
+        test: /\.jsx?$/,
+        include: path.join(__dirname, 'src'),
+        loader: 'babel',
+        query: { presets: ['es2015', 'react'] }
+      },
+      {
+        test: /\.scss$/,
+        include: path.join(__dirname, 'src/scss'),
+        // extract the output of CSS processing into a css file loaded by a link tag
+        loader: ExtractTextPlugin.extract(['css', 'sass']),
+      },
+      {
+        test: /\.json$/,
+        loader: 'json'
+      },
+      {
+        test: /\.(png|jpg|gif|svg)$/,
+        // export any images larger than 1kb as files rather than bundling as data urls
+        loader: 'url-loader?limit=1024&name=images/[name].[ext]'
+      },
+      {
+        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
+        loader: 'file-loader'
+      }
 ]
 },
 externals: {
