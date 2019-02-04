@@ -1,7 +1,7 @@
 // Import dependencies
 import { EventEmitter } from 'events';
+import ConfigStore from '../Stores/ConfigStore.js';
 import AppDispatcher from '../Dispatchers/AppDispatcher';
-import Configstore from '../Stores/ConfigStore.js';
 
 let allMarkers = [];
 
@@ -13,10 +13,6 @@ var GoogleMapStore = Object.assign({}, EventEmitter.prototype, {
 
     getGoogleMapURL: () =>{
         return  ConfigStore.get("googleMapURL");
-    },
-
-    getIndividualMarker: (index) =>{
-        console.log(index)
     },
 
     getAllMarkers: () =>{
