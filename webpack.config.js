@@ -56,6 +56,30 @@ plugins: [
     })
 ],
 
+module: {
+preLoaders: [{
+  test:    /\.jsx?$/,
+  exclude: [/node_modules/, /build/],
+  loader: 'jscs-loader'
+}],
+loaders: [
+  {
+    test: /\.jsx?$/,
+    include: path.join(__dirname, 'src'),
+    loader: 'babel',
+    query: { presets: ['es2015', 'react'] }
+  },
+  {
+    test: /\.json$/,
+    loader: 'json'
+  },
+]
+},
+externals: {
+'react/addons': true,
+'react/lib/ExecutionEnvironment': true,
+'react/lib/ReactContext': true
+}
 };
 
 
