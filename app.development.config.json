@@ -1,4 +1,6 @@
 {
 	"geoCodeEndPoint":"https://geocode.xyz/{locationName}/?json=1&auth=",
-	"authToken":"152586089022980644792x1740"
+	"authToken":"152586089022980644792x1740",
+	"apiKey":"AIzaSyCSd52ktTVSJHfNFMgHaNbDmth",
+	"googleMapURL":"https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
 }

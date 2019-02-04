@@ -1,19 +1,18 @@
 // Import dependencies
 import { EventEmitter } from 'events';
 import AppDispatcher from '../Dispatchers/AppDispatcher';
+import Configstore from '../Stores/ConfigStore.js';
 
-let allMarkers = [],
-apiKey = "AIzaSyCSd52ktTVSJHfNFMgHaNbDmth",
-googleMapURL = "https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places";
+let allMarkers = [];
 
 var GoogleMapStore = Object.assign({}, EventEmitter.prototype, {
 
     getApiKey: () => {
-        return apiKey;
+        return ConfigStore.get("apiKey");
     },
 
     getGoogleMapURL: () =>{
-        return googleMapURL;
+        return  ConfigStore.get("googleMapURL");
     },
 
     getIndividualMarker: (index) =>{
