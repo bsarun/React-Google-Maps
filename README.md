@@ -18,3 +18,6 @@
 	* Run `jest filename.test.js --coverage`
  * Run test with coverage export to a text file
  	* Run `npm run test-with-coverage > a.txt`
+
+## Third Party API for Geocoding
+	* `https://geocode.xyz/`

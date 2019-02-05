@@ -13,7 +13,6 @@ describe(" ConfigStore tests", function () {
 
 });
 
-
 let dispatch = (actionType, payload) => {
 	AppDispatcher.dispatch({
 		action: {
