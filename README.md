@@ -12,7 +12,7 @@
 	* Run `$ npm start`
 	* Navigate to http://localhost:8080
 
-## To Run JEST with coverage
+## To Run JEST
     * Run `jest filename.test.js`
 * Run test with coverage
 	* Run `jest filename.test.js --coverage`
