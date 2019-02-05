@@ -7,14 +7,17 @@ let allMarkers = [];
 
 var GoogleMapStore = Object.assign({}, EventEmitter.prototype, {
 
+    /*return apiKey from ConfigStore */
     getApiKey: () => {
         return ConfigStore.get("apiKey");
     },
 
+    /*return googleMapUrl from ConfigStore */
     getGoogleMapURL: () =>{
         return  ConfigStore.get("googleMapURL");
     },
 
+    /*Return All markers from the store */
     getAllMarkers: () =>{
       return allMarkers;
     },
@@ -47,10 +50,12 @@ var GoogleMapStore = Object.assign({}, EventEmitter.prototype, {
 	})
 });
 
+/*Handle delete marker based on the index */
 const _deleteMarker = index => {
     delete allMarkers[index];
 };
 
+/*Push location if not exists in the store */
 const _storeMarker = obj => {
     for(var i in allMarkers){       
         if(allMarkers[i].lat === obj.lat){
@@ -63,6 +68,7 @@ const _storeMarker = obj => {
     GoogleMapStore.emit('markerstored');
 };
 
+/*Update marker location */
 const _updateMarker = (payload) => {
     allMarkers[payload.i].lat = payload.lat;
     allMarkers[payload.i].lng = payload.lng;

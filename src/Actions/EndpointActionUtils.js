@@ -4,12 +4,11 @@ const EndpointActionUtils = {
 	dispatch: (actionType, payload) => {
 		AppDispatcher.dispatch({
 			action: {
-				type:    actionType,
+				type: actionType,
 				payload: payload
 			}
 		});
 	}
 };
-
 
 export default EndpointActionUtils;

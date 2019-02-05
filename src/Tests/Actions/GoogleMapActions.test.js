@@ -4,7 +4,6 @@ import sinon from 'sinon';
 const EndpointUtils = jest.mock('../../Actions/EndpointActionUtils');
 import GoogleMapActions from '../../Actions/GoogleMapActions.js';
 
-
 describe("Google Map Actions Tests", function () {
 
 	it('Test : deleteIndividualMarker', () => {
@@ -131,11 +130,6 @@ describe("Google Map Actions Tests", function () {
 	});
 
 
-
-
-
-
-
 	it('Test : updateLatLng - UPDATE_MARKER', () => {
 		let eventSpy = sinon.spy();
 		require('superagent').__setMockResponse({
@@ -210,10 +204,7 @@ describe("Google Map Actions Tests", function () {
 		dispatch('WRONG_AUTHENTICATION', null);
 		GoogleMapActions.updateLatLng(0, 'Bangalore');
 		AppDispatcher.unregister(dispatchListener);
-
 	});
-
-
 
 });
 

@@ -5,7 +5,7 @@ import { Form } from 'formsy-react';
 import GoogleMapActions from '../Actions/GoogleMapActions.js';
 import Geocode from "react-geocode";
 import GoogleMapStore from '../Stores/GoogleMapStore';
-
+import CustomStyles from '../Components/CustomStyles.jsx';
 
 class GoogleMaps extends Component {
     constructor(props) {
@@ -15,36 +15,38 @@ class GoogleMaps extends Component {
             isMarkerShown: false,
             shouldShowExternalModal: false,
             googleMapURL: GoogleMapStore.getGoogleMapURL(),
-            actions: "",            
             markerIndex: null,
             locationName: ""
         }
 
         this.openModal = this.openModal.bind(this),
-            this.afterOpenModal = this.afterOpenModal.bind(this),
-            this.closeModal = this.closeModal.bind(this),
-            this.closeEditModal = this.closeEditModal.bind(this)
-            this.handleSubmitForm = this.handleSubmitForm.bind(this),
-            this.handleInputChange = this.handleInputChange.bind(this),
-            this.pushMarkerToMap = this.pushMarkerToMap.bind(this)
-            this.editMarker = this.editMarker.bind(this),
-            this.handleEditChange = this.handleEditChange.bind(this),
-            this.handleEditForm = this.handleEditForm.bind(this),
-            this.deleteMarker = this.deleteMarker.bind(this),
-            this.duplicateMarkerFound = this.duplicateMarkerFound.bind(this),
-            this.error = this.error.bind(this),
-            this.invalidlocation = this.invalidlocation.bind(this),
-            this.wrongauthentication = this.wrongauthentication.bind(this)
+        this.afterOpenModal = this.afterOpenModal.bind(this),
+        this.closeModal = this.closeModal.bind(this),
+        this.closeEditModal = this.closeEditModal.bind(this)
+        this.handleSubmitForm = this.handleSubmitForm.bind(this),
+        this.handleInputChange = this.handleInputChange.bind(this),
+        this.pushMarkerToMap = this.pushMarkerToMap.bind(this)
+        this.editMarker = this.editMarker.bind(this),
+        this.handleEditChange = this.handleEditChange.bind(this),
+        this.handleEditForm = this.handleEditForm.bind(this),
+        this.deleteMarker = this.deleteMarker.bind(this),
+        this.duplicateMarkerFound = this.duplicateMarkerFound.bind(this),
+        this.error = this.error.bind(this),
+        this.invalidLocation = this.invalidLocation.bind(this),
+        this.wrongAuthentication = this.wrongAuthentication.bind(this)
     }
 
-    invalidlocation(){
+    /*Handle Invalid Location case */
+    invalidLocation(){
         alert("Invalid Location");
     }
 
-    wrongauthentication(){
+    /*Handle wrong authentication case */
+    wrongAuthentication(){
         alert("Wrong Authentication!");
     }
 
+    /*Handle error case */
     error(){
         var toDelete = confirm("Error getting the Coordinates. Try Again?");
         if (toDelete == true) {
@@ -54,22 +56,25 @@ class GoogleMaps extends Component {
         }
     }
 
+    /*Handle duplicate marker case */
     duplicateMarkerFound(){
         alert("Cannot Add Duplicate Location!")
     }
 
+    /*Handle submit edit marker case */
     handleEditForm(e){       
         GoogleMapActions.updateLatLng(this.state.markerIndex, this.state.locationName);
     }
 
+    /*Handle edit input change case */
     handleEditChange(e){
         this.setState({
             locationName: e.target.value,
             markerIndex: e.target.id
-        })
-        
+        })        
     }
 
+    /*Handle delete marker case */
     deleteMarker(e){
         var toDelete = confirm("Delete "+e.target.id.split("-")[1].toLowerCase()+"?");
         if (toDelete == true) {
@@ -79,19 +84,21 @@ class GoogleMaps extends Component {
         }        
     }
 
+    /*Handle edit marker case */
     editMarker(e){
         this.setState({ 
             modalEditOpen: true ,
-            actions: "edit",
             locationName: e.target.id.split("-")[1],
             markerIndex: e.target.id.split("-")[0]
         });
     }
 
+    /*Handle add marker submit case */
     handleSubmitForm() {
         GoogleMapActions.getLatLng(this.state.formData.locationName)
     }
 
+    /*Push the stored markes to the map */
     pushMarkerToMap() {       
         this.setState({
             markers: GoogleMapStore.getAllMarkers(),
@@ -100,6 +107,7 @@ class GoogleMaps extends Component {
         })
     }
 
+    /*Handle add marker input change case */
     handleInputChange(evt) {
         let markerObj = {};
         markerObj["locationName"] = evt.target.value;
@@ -108,54 +116,57 @@ class GoogleMaps extends Component {
         });
     }
 
+    /*Handle Add marker modal open case */
     openModal() {
         this.setState({ 
             modalIsOpen: true,
-            actions: "create" 
         });
     }   
 
+    /*Handle post Add marker modal open case */
     afterOpenModal() {
         this.subtitle.style.color = '#f00';
     }
 
+    /*Handle close for Add marer case */
     closeModal() {
         this.setState({ modalIsOpen: false });
     }
+
+    /*Handle close for edit marer case */
     closeEditModal() {
         this.setState({ modalEditOpen: false });
     }
     
-
+    /*React Life Cyclces */
     componentWillUnmount() {
         GoogleMapStore.removeListener('markerstored', this.pushMarkerToMap);
-        GoogleMapStore.removeListener('duplicatemarker', this.duplicateMarkerFound);
+        GoogleMapStore.removeListener('duplicateMarker', this.duplicateMarkerFound);
         GoogleMapStore.removeListener('error', this.error);
-        GoogleMapStore.removeListener('invalidlocation', this.invalidlocation);
-        GoogleMapStore.removeListener('wrongauthentication', this.wrongauthentication);
+        GoogleMapStore.removeListener('invalidLocation', this.invalidLocation);
+        GoogleMapStore.removeListener('wrongAuthentication', this.wrongAuthentication);
     }
 
-    componentWillReceiveProps(nextProps){    
-             console.log(nextProps)
-    }
-
+    /*React Life Cyclces */
     componentWillMount() {
         this.setState({ markers: [] })
         GoogleMapStore.on('markerstored', this.pushMarkerToMap);
-        GoogleMapStore.on('duplicatemarker', this.duplicateMarkerFound);
+        GoogleMapStore.on('duplicateMarker', this.duplicateMarkerFound);
         GoogleMapStore.on('error', this.error);
-        GoogleMapStore.on('invalidlocation', this.invalidlocation)
-        GoogleMapStore.on('wrongauthentication', this.wrongauthentication)
+        GoogleMapStore.on('invalidLocation', this.invalidLocation)
+        GoogleMapStore.on('wrongAuthentication', this.wrongAuthentication)
     }
 
-
+    /*React Life Cyclces */
     componentDidMount() {
         let apiKey = GoogleMapStore.getApiKey();
         Geocode.setApiKey(apiKey);
     }
 
+    /*Component render */
     render() {
 
+        /*Existing and all new markers will be looped and pushed to the map here */
         const MyMapComponent = withScriptjs(withGoogleMap((props) =>
             <GoogleMap
                 defaultZoom={2}
@@ -187,16 +198,15 @@ class GoogleMaps extends Component {
                     }}
                 />
 
-
                 <Modal
                     isOpen={this.state.modalIsOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeModal}
-                    style={customStyles}
+                    style={CustomStyles}
                 >
                   <Form onValidSubmit={this.handleSubmitForm}>
-                        <div style={customStyles.createMarkerModalDiv} id="create-marker-modal-div">
-                            <h2 style={customStyles.h2}>Create Marker</h2>
+                        <div style={CustomStyles.createMarkerModalDiv} id="create-marker-modal-div">
+                            <h2 style={CustomStyles.h2}>Create Marker</h2>
                             <div class="create-marker-formdata">
                                 <input
                                     placeholder="Enter Location Name"
@@ -207,14 +217,11 @@ class GoogleMaps extends Component {
                                     onBlur={this.handleInputBlur}
                                     className="form-control"
                                     onKeyUp={this.props.onKeyUp}
-                                    onKeyDown={this.props.onKeyDown}
-                                    aria-describedby="jhgj"
+                                    onKeyDown={this.props.onKeyDown}                                    
                                     id="input-id"
                                 />
                             </div><br></br>
-
-
-                             <button onclick={this.handleSubmitForm} style={customStyles.buttonStyle} id="get-coordinates-button" className="btn btn-primary">
+                             <button onclick={this.handleSubmitForm} style={CustomStyles.buttonStyle} id="get-coordinates-button" className="btn btn-primary">
                                 Add Location
                             </button>
 
@@ -223,24 +230,24 @@ class GoogleMaps extends Component {
                     </Form>
 
                 </Modal>
-                <button style={customStyles.buttonStyle} id="addmap-button" className="btn btn-primary" onClick={this.openModal}>
+                <button style={CustomStyles.buttonStyle} id="addmap-button" className="btn btn-primary" onClick={this.openModal}>
                     Add Map
                 </button>
 
-                <div style={customStyles.markerWrapper} id="marker-wrapper">
+                <div style={CustomStyles.markerWrapper} id="marker-wrapper">
                 {
                     Array.isArray(this.state.markers) ?
                         this.state.markers.map((arr, index) => {
                             return (
                                 <div key={index} className="screening-questions col-sm-12 col-md-12 ageofpeoplewrapper">
-                                    <div style={customStyles.subwrapper} id="marker-subwrapper">
-                                        <h3 style={customStyles.h3}>{arr.locationName}</h3>
+                                    <div style={CustomStyles.subwrapper} id="marker-subwrapper">
+                                        <h3 style={CustomStyles.h3}>{arr.locationName}</h3>
                                         <p>Latitude : {arr.lat}</p>
                                         <p>Longitude : {arr.lng}</p>
-                                        <button style={customStyles.buttonStyleLocation} id={index + "-" + arr.locationName} className="btn btn-primary" onClick={this.editMarker}>
+                                        <button style={CustomStyles.buttonStyleLocation} id={index + "-" + arr.locationName} className="btn btn-primary" onClick={this.editMarker}>
                                             Edit
                                         </button>
-                                        <button style={customStyles.buttonStyleLocation} id={index + "-" + arr.locationName} className="btn btn-primary" onClick={this.deleteMarker}>
+                                        <button style={CustomStyles.buttonStyleLocation} id={index + "-" + arr.locationName} className="btn btn-primary" onClick={this.deleteMarker}>
                                             Delete
                                         </button>
                                     </div>
@@ -250,17 +257,15 @@ class GoogleMaps extends Component {
                 }
                 </div>
 
-
-
                 <Modal
                     isOpen={this.state.modalEditOpen}
                     onAfterOpen={this.afterOpenModal}
                     onRequestClose={this.closeEditModal}
-                    style={customStyles}
+                    style={CustomStyles}
                 >
                   <Form onValidSubmit={this.handleEditForm}>
-                        <div style={customStyles.createMarkerModalDiv} id="create-marker-modal-div">
-                            <h2 style={customStyles.h2}>Edit Marker</h2>
+                        <div style={CustomStyles.createMarkerModalDiv} id="create-marker-modal-div">
+                            <h2 style={CustomStyles.h2}>Edit Marker</h2>
                             <div class="create-marker-formdata">
                                 <input
                                     id={this.state.markerIndex}
@@ -278,89 +283,16 @@ class GoogleMaps extends Component {
                             </div><br></br>
 
 
-                             <button style={customStyles.buttonStyle} id="get-coordinates-button" className="btn btn-primary">
+                             <button style={CustomStyles.buttonStyle} id="get-coordinates-button" className="btn btn-primary">
                                 Update Location
                             </button>
-
                         </div>
-
                     </Form>
-
                 </Modal>
-
             </div>
         );
-
     }
 }
 
 
 export default GoogleMaps;
-
-const customStyles = {
-    content: {
-        top: '25%',
-        width: '40%',
-        height: '200px',
-        margin: '6% 0% 0% 25%'
-    },
-    buttonStyle: {
-        margin: '2%',
-        background: '#1a73e8',
-        border: 'none',
-        color: 'white',
-        padding: '5px 15px 5px 15px',
-        'text-align': 'center',
-        'border-radius': '4px'
-    },
-    buttonStyleLocation: {
-        'margin-right': '2%',
-        background: '#1a73e8',
-        border: 'none',
-        color: 'white',
-        padding: '5px 15px 5px 15px',
-        'text-align': 'center',
-        'border-radius': '4px'
-    },
-    createMarkerModalDiv: {
-        'text-align': 'center'
-    },
-    markerWrapper: {
-        margin: '2%',
-        
-        width: 'auto',
-        height: 'auto',
-        padding: '2%',
-        overflow: 'hidden'
-    },
-
-    subwrapper: {
-        width: '50%',
-        float: 'left',
-
-    },
-    editMarkerModal: {
-        'text-align': 'center'
-    },
-    buttonStyleModal: {
-        margin: '2%',
-        background: '#1a73e8',
-        border: 'none',
-        color: 'white',
-        padding: '5px 15px 5px 15px',
-        'text-align': 'center'
-    },
-    content: {
-        top: '25%',
-        width: '40%',
-        height: '200px',
-        margin: '6% 0% 0% 25%'
-    },
-    h3: {
-        color: 'blue'
-    },
-    h2: {
-        'background': 'lightgrey',
-        'padding': '4% 2% 4% 2%'
-    }
-};

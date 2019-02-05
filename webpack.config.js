@@ -37,8 +37,7 @@ plugins: [
             transform: (content, path) => 'window.__APP_CONFIG__ = ' + content
         }
     ]),
-    // [contenthash] forces the filename to be the hash of the file's contents,
-    // guaranteeing a new, cache-busting filename on every build that contains css changes
+    
     new ExtractTextPlugin('css/[contenthash].css', { allChunks: true }),
     // lock dependency loading order
     new webpack.optimize.OccurenceOrderPlugin(),
@@ -70,23 +69,8 @@ loaders: [
         query: { presets: ['es2015', 'react'] }
       },
       {
-        test: /\.scss$/,
-        include: path.join(__dirname, 'src/scss'),
-        // extract the output of CSS processing into a css file loaded by a link tag
-        loader: ExtractTextPlugin.extract(['css', 'sass']),
-      },
-      {
         test: /\.json$/,
         loader: 'json'
-      },
-      {
-        test: /\.(png|jpg|gif|svg)$/,
-        // export any images larger than 1kb as files rather than bundling as data urls
-        loader: 'url-loader?limit=1024&name=images/[name].[ext]'
-      },
-      {
-        test: /\.(ttf|otf|eot|woff(2)?)(\?[a-z0-9]+)?$/,
-        loader: 'file-loader'
       }
 ]
 },
