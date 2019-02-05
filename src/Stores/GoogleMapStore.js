@@ -52,7 +52,7 @@ const _deleteMarker = index => {
 };
 
 const _storeMarker = obj => {
-    for(var i in allMarkers){
+    for(var i in allMarkers){       
         if(allMarkers[i].lat === obj.lat){
             GoogleMapStore.emit('duplicatemarker');     
             return false;     
