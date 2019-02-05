@@ -13,4 +13,8 @@
 	* Navigate to http://localhost:8080
 
 ## To Run JEST with coverage
-    * Run `jest filename.test.js --coverage`
+    * Run `jest filename.test.js`
+* Run test with coverage
+	* Run `jest filename.test.js --coverage`
+ * Run test with coverage export to a text file
+ 	* Run `npm run test-with-coverage > a.txt`
