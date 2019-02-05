@@ -209,6 +209,7 @@ class GoogleMaps extends Component {
                                     onKeyUp={this.props.onKeyUp}
                                     onKeyDown={this.props.onKeyDown}
                                     aria-describedby="jhgj"
+                                    id="input-id"
                                 />
                             </div><br></br>
 
