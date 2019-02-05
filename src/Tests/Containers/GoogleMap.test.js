@@ -12,8 +12,10 @@ import ConfigStore from '../../Stores/ConfigStore';
 import GoogleMap from '../../Containers/GoogleMap.jsx';
 const EndpointUtils = jest.mock('../../Actions/EndpointActionUtils');
 import GoogleMapActions from '../../Actions/GoogleMapActions.js';
+import GoogleMapStore from '../../Stores/GoogleMapStore.js';
 
 describe('<GoogleMap />', () => {
+    let applicationMenu, props, tree;
 
     beforeAll(() => {
         request.__setMockResponse({ body: {} });
@@ -27,23 +29,24 @@ describe('<GoogleMap />', () => {
         Object.defineProperty(window, "matchMedia", {
             value: jest.fn(() => { return { matches: true } })
         });
-
-        var output = renderer.mount(<GoogleMap/>);
-
-        let tree = output.toJSON();
-		expect(tree).toMatchSnapshot();	
-
+        
+        applicationMenu = renderer.create(<GoogleMap/>);
+        tree =applicationMenu.toJSON();
+        applicationMenu.unmount();
+       
 
     });
 
     it('Navigate to componentWillMount on returning getaccoridianstate = 0', () => {
-        let wrapper1 = mount(<GoogleMap />);
-
-        
-       
-
+        const mockedEvent = { target: {} ,preventDefault:()=>{}}; 
+        const wrapper = mount(<GoogleMap/>);
+        var output = wrapper.find('GoogleMap').getNode();
+        output.handleInputChange(mockedEvent)
+        // wrapper.find('#input-id').simulate('change', mockedEvent  );
 
     });
+
+   
 
 
   
