@@ -38,7 +38,7 @@ class GoogleMaps extends Component {
 
     /*Handle Invalid Location case */
     invalidLocation(){
-        alert("Invalid Location");
+        alert("Invalid Location! Please Enter Valid Location.");
     }
 
     /*Handle wrong authentication case */
@@ -140,7 +140,7 @@ class GoogleMaps extends Component {
     
     /*React Life Cyclces */
     componentWillUnmount() {
-        GoogleMapStore.removeListener('markerstored', this.pushMarkerToMap);
+        GoogleMapStore.removeListener('markerStored', this.pushMarkerToMap);
         GoogleMapStore.removeListener('duplicateMarker', this.duplicateMarkerFound);
         GoogleMapStore.removeListener('error', this.error);
         GoogleMapStore.removeListener('invalidLocation', this.invalidLocation);
@@ -150,7 +150,7 @@ class GoogleMaps extends Component {
     /*React Life Cyclces */
     componentWillMount() {
         this.setState({ markers: [] })
-        GoogleMapStore.on('markerstored', this.pushMarkerToMap);
+        GoogleMapStore.on('markerStored', this.pushMarkerToMap);
         GoogleMapStore.on('duplicateMarker', this.duplicateMarkerFound);
         GoogleMapStore.on('error', this.error);
         GoogleMapStore.on('invalidLocation', this.invalidLocation)

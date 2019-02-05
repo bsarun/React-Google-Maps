@@ -31,20 +31,20 @@ var GoogleMapStore = Object.assign({}, EventEmitter.prototype, {
                 break;	
             case 'UPDATE_MARKER':
                 _updateMarker(action.payload);
-                GoogleMapStore.emit('markerstored');
+                GoogleMapStore.emit('markerStored');
                 break;    
             case 'DELETE_MARKER':
                 _deleteMarker(action.payload);
-                GoogleMapStore.emit('markerstored');
+                GoogleMapStore.emit('markerStored');
                 break;
             case 'ERROR':                
                 GoogleMapStore.emit('error');
                 break; 
             case 'INVALID_LOCATION':                
-                GoogleMapStore.emit('invalidlocation');
+                GoogleMapStore.emit('invalidLocation');
                 break;   
             case 'WRONG_AUTHENTICATION':                
-                GoogleMapStore.emit('wrongauthentication');
+                GoogleMapStore.emit('wrongAuthentication');
                 break;             
 		}
 	})
@@ -57,15 +57,15 @@ const _deleteMarker = index => {
 
 /*Push location if not exists in the store */
 const _storeMarker = obj => {
-    for(var i in allMarkers){       
+    for(var i in allMarkers){         
         if(allMarkers[i].lat === obj.lat){
-            GoogleMapStore.emit('duplicatemarker');     
+            GoogleMapStore.emit('duplicateMarker');     
             return false;     
         }
     }
 
     allMarkers.push(obj);
-    GoogleMapStore.emit('markerstored');
+    GoogleMapStore.emit('markerStored');
 };
 
 /*Update marker location */
